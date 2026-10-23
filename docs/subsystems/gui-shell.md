@@ -432,6 +432,21 @@ never empty: `OwnerTrace` says so with its second result). See
 `TestGatewayTraceIsLoopbackOnly` in
 [`trace_peer_test.go`](../../internal/gateway/trace_peer_test.go).
 
+### Usage chart colours
+
+The tray panel and the window's Requests charts share `ledCategories` in
+[`app.js`](../../internal/gui/assets/app.js). Provider and agent series use
+`--usage-*` colours from their supplied logo in
+[`app.css`](../../internal/gui/assets/app.css), so changing metric or rank
+keeps a known brand's hue. Model-at-provider groups use the provider's logo;
+model-only groups retain separate ranked colours rather than guessing a
+vendor from a model name. Local sessions use neutral slate. Unmapped logos
+and groups keep the existing ranked palette, and Other stays muted.
+The column, tooltip, legend swatch and ranking bar receive the same colour.
+Dark themes use lighter brand shades. Colorblind mode clears the brand
+properties to select the existing Okabe–Ito series, including on already
+painted charts. No usage totals, filters or grouping limits change.
+
 ## Verification
 
 The session readers include Cursor CLI chat stores, Cursor editor project

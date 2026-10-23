@@ -18372,11 +18372,11 @@ function ledAxis(max) {
   return 10 * e * 4;
 }
 
-// what a chart tells apart, most first, and the colour of each: those of the
-// ranking's top, and the rest together as "Other"
+// Brand colours follow the supplied logo; model-only groups keep distinct series.
+// Missing brands and colorblind mode fall back to the ranked palette.
 function ledCategories(l, split, metric) {
   const list = (l.by?.[split] || []).slice().sort((a, b) => ledRankValue(metric, b) - ledRankValue(metric, a) || allTokens(b) - allTokens(a));
-  const top = list.slice(0, LED_SHOWN).map((x, i) => ({ ...x, color: `var(--c${i + 1})` }));
+  const top = list.slice(0, LED_SHOWN).map((x, i) => ({ ...x, color: `var(--usage-${split === "model" ? "" : x.id === "session-unknown" ? "local" : /^[\w-]+$/.test(x.icon) ? x.icon : ""}, var(--c${i + 1}))` }));
   return { top, rest: list.slice(LED_SHOWN), list };
 }
 
@@ -18569,11 +18569,7 @@ function drawLedColumns(box, l, split, metric, compact, chooseDay, focusDay) {
   if (focusDay) box.querySelector(`.led-day[data-day="${CSS.escape(focusDay)}"]`)?.focus({ preventScroll: true });
 }
 
-// the ranking: who the requests were of, by the metric, the most first —
-// each with its share, its other figures, and a click that lists only its
-// requests (a provider or an agent), or those of its model. picked is the
-// one the filter has picked, if any; the ones past the chart's colours are
-// left out of it and said in a line.
+// Rank by the metric, with shares and filters; combine entries past LED_SHOWN.
 function drawLedRank(box, l, split, metric, picked, choose, compact) {
   // a redraw (a pick, a refresh) leaves the ranking scrolled where it was
   const kept = box.scrollTop;

@@ -38,6 +38,13 @@
   --code: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --logo-invert: 0;
   --tk-s: #1a7f45; --tk-k: #7c3aed; --tk-f: #1d4ed8; --tk-n: #b45309; --tk-v: #0e7490; --tk-o: #a21caf; --tk-c: #85858d;
+  /* Usage follows the bundled logos, not the order of the ranking. */
+  --usage-claude-color: #d97757; --usage-claudecode-color: var(--usage-claude-color);
+  --usage-codex-color: #3941ff; --usage-deepseek-color: #4d6bfe;
+  --usage-gemini-color: #3186ff; --usage-qwen-color: #6336e7;
+  --usage-zhipu-color: #3859ff; --usage-minimax-color: #e2167e; --usage-mistral-color: #c6450c;
+  --usage-openai: var(--fg-2); --usage-kimi: var(--fg-2); --usage-grok: var(--fg-2); --usage-xai: var(--fg-2);
+  --usage-local: #64748b;
   /* what a chart tells apart: providers, agents, models */
   --c1: #4f46e5; --c2: #0ea5e9; --c3: #10b981; --c4: #f59e0b; --c5: #ec4899; --c6: #8b5cf6; --c7: #64748b;
 }
@@ -75,6 +82,9 @@
     --logo-invert: 1;
     --tk-s: #98d8a4; --tk-k: #c4b5fd; --tk-f: #93c5fd; --tk-n: #f2b544; --tk-v: #67e8f9; --tk-o: #f0abfc; --tk-c: #8b8b94;
     --c1: #a5b4fc; --c2: #7dd3fc; --c3: #6ee7b7; --c4: #fcd34d; --c5: #f9a8d4; --c6: #c4b5fd; --c7: #94a3b8;
+    --usage-claude-color: #e99a7f; --usage-codex-color: #a39cff; --usage-deepseek-color: #8ba2ff;
+    --usage-gemini-color: #7db3ff; --usage-qwen-color: #b39afa; --usage-zhipu-color: #8c9fff;
+    --usage-minimax-color: #f783ba; --usage-mistral-color: #ff9b63; --usage-local: #94a3b8;
   }
 }
 :root[data-theme="dark"] {
@@ -89,10 +99,19 @@
   --logo-invert: 1;
   --tk-s: #98d8a4; --tk-k: #c4b5fd; --tk-f: #93c5fd; --tk-n: #f2b544; --tk-v: #67e8f9; --tk-o: #f0abfc; --tk-c: #8b8b94;
   --c1: #a5b4fc; --c2: #7dd3fc; --c3: #6ee7b7; --c4: #fcd34d; --c5: #f9a8d4; --c6: #c4b5fd; --c7: #94a3b8;
+  --usage-claude-color: #e99a7f; --usage-codex-color: #a39cff; --usage-deepseek-color: #8ba2ff;
+  --usage-gemini-color: #7db3ff; --usage-qwen-color: #b39afa; --usage-zhipu-color: #8c9fff;
+  --usage-minimax-color: #f783ba; --usage-mistral-color: #ff9b63; --usage-local: #94a3b8;
 }
 /* Okabe–Ito qualitative series (#2073): adjacent series stay apart in hue and
    lightness in both light and dark themes */
 :root[data-colorblind="1"] {
+  /* An invalid custom property selects each mark's ranked --cN fallback,
+     including charts already painted when this setting changes. */
+  --usage-claude-color: initial; --usage-claudecode-color: initial; --usage-codex-color: initial;
+  --usage-deepseek-color: initial; --usage-gemini-color: initial; --usage-qwen-color: initial;
+  --usage-zhipu-color: initial; --usage-minimax-color: initial; --usage-mistral-color: initial;
+  --usage-openai: initial; --usage-kimi: initial; --usage-grok: initial; --usage-xai: initial; --usage-local: initial;
   --c1: #0072b2; --c2: #e69f00; --c3: #009e73; --c4: #d55e00; --c5: #cc79a7; --c6: #56b4e9; --c7: #64748b;
 }
 @media (prefers-color-scheme: dark) {
