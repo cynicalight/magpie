@@ -11066,7 +11066,7 @@ function renderModels(p) {
       // 7 shown, and "4 more, filter to find them" with no names to filter by)
       if (shown >= 80 && !f && !showAll && !on) { hidden++; continue; }
       const c = el("button", "mchip pick" + (on ? " on" : served.has(m.id) ? " auto" : "") + (noAPI(m) ? " noapi" : ""));
-      c.append(el("span", "", m.name && m.name !== m.id ? m.name : m.id));
+      c.append(icon(m.logo), el("span", "", m.name && m.name !== m.id ? m.name : m.id));
       const tell = tellTag(tells.get(m.id));
       if (tell) c.append(tell);
       // one the plan serves at no cost to it (WorkBuddy's x0.00 credits)
@@ -19441,6 +19441,8 @@ function renderSettings() {
   $("#themeSegs").replaceChildren(segs(THEMES.map(([id, name]) => [id, t(name)]), s.theme, (theme) => savePrefs({ ...keep, theme })));
   $("#colorblindSegs").title = t("Colorblind-safe chart colors, and each allowance window's line in a dash of its own");
   $("#colorblindSegs").replaceChildren(segs([["off", t("Off")], ["on", t("On")]], s.colorblind ? "on" : "off", (v) => savePrefs({ ...keep, colorblind: v === "on" })));
+  $("#topTabsRow").hidden = mode !== "window";
+  $("#topTabsSegs").replaceChildren(segs([["icons", t("Icons only")], ["text", t("Text only")], ["both", t("Icons and text")]], document.body.dataset.topTabs, setTopTabs));
   renderLangPick(s, keep);
   renderGatewayMode(s);
   // a browser tab has its own zoom, and magpie leaves it to it
@@ -24435,24 +24437,12 @@ document.fonts?.ready.then(fitTop);
 document.fonts?.addEventListener("loadingdone", fitTop);
 
 // ---- the sidebar ----------------------------------------------------------
-// A window wide enough has its pages down a sidebar, as a Mac app's: in
-// groups, the open page's own tabs under it, Settings at its foot and the
-// gateway's address under that, the header saying where the reader is
-// ("Work / Library / MCP servers"). Narrower, and magpie web on a phone,
-// the pages go back into the header as tabs and each page shows its own
-// tabs again, as iPadOS's sidebar turns into a tab bar when it has no room.
-// It is the same #nav, its buttons and handlers, moved between the two.
-// (app.css's side-nav rules hold at the same width): narrower, the page
-// beside it would be narrower than Usage's requests with their columns left
-// out (768 points), and the sidebar gives way to the header's tabs, as a Mac
-// app's sidebar does in a narrow window
+// layoutNav moves the same #nav between sidebar and header. The 1024px
+// breakpoint leaves at least 768px for the page beside the sidebar.
 var SIDE_AT = 1024;
 var sideQuery = matchMedia(`(min-width: ${SIDE_AT}px)`);
 function sideNav() { return document.body.classList.contains("side-nav"); }
-// the reader's own layout, picked with the title bar's button
-// (toggleSideNav) and kept for the window as a Mac app keeps its sidebar
-// shown or hidden: "side" or "top" at every width, the sidebar narrower in a
-// narrow window (app.css); none picked, the sidebar from SIDE_AT
+// An explicit local layout choice overrides the width-based default.
 var navPick = "";
 try { navPick = localStorage.getItem("magpie.navLayout") || ""; } catch { /* by the width, then */ }
 if (navPick !== "side" && navPick !== "top") navPick = "";

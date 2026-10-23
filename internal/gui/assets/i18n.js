@@ -4,6 +4,9 @@
 // works. {name} slots are filled by t(str, vars).
 const I18N = {
   zh: {
+    "Top tab display": "顶部标签显示",
+    "Icons only": "仅图标",
+    "Icons and text": "图标和文字",
     "None": "无",
     "Prompt": "提示词",
     "Request hook": "请求 Hook",
@@ -3890,6 +3893,9 @@ const I18N = {
     "Audio": "音频",
   },
   "zh-TW": {
+    "Top tab display": "頂部分頁顯示",
+    "Icons only": "僅圖示",
+    "Icons and text": "圖示和文字",
     "None": "無",
     "Prompt": "提示詞",
     "Request hook": "請求 Hook",
@@ -7761,6 +7767,9 @@ const I18N = {
     "Audio": "音訊",
   },
   ja: {
+    "Top tab display": "上部タブの表示",
+    "Icons only": "アイコンのみ",
+    "Icons and text": "アイコンとテキスト",
     "None": "なし",
     "Prompt": "プロンプト",
     "Request hook": "リクエストフック",
@@ -11634,6 +11643,9 @@ const I18N = {
     "Audio": "音声",
   },
   de: {
+    "Top tab display": "Anzeige der oberen Tabs",
+    "Icons only": "Nur Symbole",
+    "Icons and text": "Symbole und Text",
     "None": "Keine",
     "Prompt": "Prompt",
     "Request hook": "Anfrage-Hook",

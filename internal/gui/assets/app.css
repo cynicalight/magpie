@@ -336,6 +336,15 @@ body.window .top.inrow .actions { margin-left: 0; }
    tabs under it, Settings and the gateway at the foot; the same #nav that
    is the header's tabs otherwise */
 .nav-gl, .nav-ic, .side-l, .crumb { display: none; }
+/* The header reuses the sidebar's icons; its display choice is local. */
+body:not(.side-nav) #nav > button { display: inline-flex; align-items: center; justify-content: center; gap: 5px; }
+body:not(.side-nav):not([data-top-tabs="text"]) #nav .nav-ic { display: block; flex: none; }
+/* Keep each translated name available to assistive technology. */
+body:not(.side-nav)[data-top-tabs="icons"] #nav > button > span {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
 /* at any width the reader picks it (app.js layoutNav); in a narrow window
    it gives the page more of the room */
 body.side-nav { --side-w: 212px; padding-left: var(--side-w); }
@@ -3075,6 +3084,7 @@ body.window .ag-sk-icon { width: 22px; height: 22px; border-radius: 6px; }
   font-size: 11.5px; color: var(--muted); background: var(--card); border: 1px solid var(--line);
   transition: background .12s, color .12s, border-color .12s;
 }
+.row .mchip .ic, body.window .row .mchip .ic { width: 14px; height: 14px; }
 .mchip:hover { color: var(--fg); border-color: var(--muted); }
 .mchip.on { color: var(--accent); background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 45%, transparent); font-weight: 500; }
 .mchip.on::before { content: "✓"; font-size: 10px; }

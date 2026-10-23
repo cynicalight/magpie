@@ -221,6 +221,7 @@
       let b = nav.querySelector(`button[data-plugin-page][data-view="${e.key}"]`);
       if (!b) b = tab(e);
       else b.querySelector("span").textContent = titled(e);
+      b.title = titled(e);
       b.classList.toggle("on", view === e.key);
       // in the place of the built-in page it replaces, which steps aside
       // (and the reader on it is taken to the plugin's); else in the
